@@ -1,0 +1,55 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home Page</title>
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+        button {
+            padding: 10px 20px;
+            font-size: 16px;
+            margin: 10px;
+            cursor: pointer;
+            border: none;
+            border-radius: 5px;
+            transition: background-color 0.3s;
+        }
+
+        button.login {
+            background-color: #3498db;
+            color: #fff;
+        }
+
+        button.login:hover {
+            background-color: #2980b9;
+        }
+
+        button.register {
+            background-color: #2ecc71;
+            color: #fff;
+        }
+
+        button.register:hover {
+            background-color: #27ae60;
+        }
+    </style>
+</head>
+
+<body>
+    <div>
+        <h1>Successfully Logged in</h1>
+        <!-- Button that redirects to /login.html -->
+        <button class="login" onclick="window.location.href='/send.html'">Send Messages</button>
+        <!-- Button that redirects to /register.html -->
+        <button class="register" onclick="window.location.href='/received.html'">View Recieved Messages</button>
+        <button class="view-details" onclick="window.location.href='/details.html'">View Account Details</button>
+    </div>
+</body>
+</html>
