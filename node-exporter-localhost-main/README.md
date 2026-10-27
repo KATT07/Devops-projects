@@ -28,5 +28,7 @@ sudo docker compose up -d
 
 Originally by : https://grafana.com/docs/grafana-cloud/quickstart/docker-compose-linux/
 
+change published port from "127.0.0.1:9090:9090" to "9090:9090" if u want to expose to lan
+
 # Grafana Dashboards
-id: 12542 1860
+id: 1860
