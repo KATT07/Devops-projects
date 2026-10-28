@@ -1,0 +1,113 @@
+volumes:
+  seerr-data: {}
+
+services:
+  seerr:
+    image: ghcr.io/seerr-team/seerr:latest
+    container_name: seerr
+    init: true
+    environment:
+      PUID: "1000"
+      PGID: "1000"
+    volumes:
+      - seerr-data:/app/config
+    ports:
+      - "5055:5055"
+    security_opt:
+      - no-new-privileges:true
+    cap_drop:
+      - ALL
+    restart: unless-stopped
+
+  profilarr:
+    image: ghcr.io/dictionarry-hub/profilarr:latest
+    container_name: profilarr
+    environment:
+      PUID: "1000"
+      PGID: "1000"
+    volumes:
+      - ./config/profilarr:/config
+    ports:                                                                                                                                                                                                                                  
+      - "6868:6868"                                                                                                                                                                                                                         
+    restart: unless-stopped
+
+  prowlarr:
+    image: lscr.io/linuxserver/prowlarr:latest
+    container_name: prowlarr
+    environment:
+      PUID: "1000"
+      PGID: "1000"
+    volumes:
+      - ./config/prowlarr:/config
+    ports:
+      - "9696:9696"
+    restart: unless-stopped
+
+  flaresolverr:
+    image: ghcr.io/flaresolverr/flaresolverr:latest
+    container_name: flaresolverr
+    environment:
+      - LOG_FILE=none
+    ports:
+      - "8191:8191"
+    restart: unless-stopped
+
+  sonarr:
+    image: lscr.io/linuxserver/sonarr:latest
+    container_name: sonarr
+    environment:
+      PUID: "1000"
+      PGID: "1000"
+    volumes:
+      - ./config/sonarr:/config
+      - /mnt/bkp1:/data
+    ports:
+      - "8989:8989"
+    restart: unless-stopped
+
+  radarr:
+    image: lscr.io/linuxserver/radarr:latest
+    container_name: radarr
+    environment:
+      PUID: "1000"
+      PGID: "1000"
+    volumes:
+      - ./config/radarr:/config
+      - /mnt/bkp1:/data
+    ports:
+      - "7878:7878"
+    restart: unless-stopped
+
+  bazarr:
+    image: lscr.io/linuxserver/bazarr:latest
+    container_name: bazarr
+    environment:
+      PUID: "1000"
+      PGID: "1000"
+    volumes:
+      - ./config/bazarr:/config
+      - /mnt/bkp1/Media:/data
+    ports:
+      - "6767:6767"
+    restart: unless-stopped
+
+  qbittorrent-nox:
+    container_name: qbittorrent-nox
+    image: qbittorrentofficial/qbittorrent-nox:latest
+    restart: unless-stopped
+    environment:
+      - QBT_LEGAL_NOTICE=CONFIRM
+    ports:
+      # for bittorrent traffic
+      - 6881:6881/tcp
+      - 6881:6881/udp
+      # for WebUI
+      - 8080:8080/tcp
+    read_only: true
+    stop_grace_period: 30m
+    tmpfs:
+      - /tmp
+    tty: true
+    volumes:
+      - ./config/qbittorrent:/config
+      - /mnt/bkp1/Downloads:/downloads
