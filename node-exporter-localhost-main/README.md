@@ -27,7 +27,7 @@ Originally by : https://grafana.com/docs/grafana-cloud/quickstart/docker-compose
 
 add prometheus at grafana > connections > datasources > add data source
 
-http://prometheus:9090
+http://prometheus:9090  also set scrape interval to same as config: 1m
 
 import dashboard from grafana > dashboards > new > import dashboard**
 
