@@ -31,4 +31,4 @@ http://prometheus:9090
 
 import dashboard from grafana > dashboards > new > import dashboard**
 
-id: 1860
+id: 1860  or use the .json file to import a custom dash
