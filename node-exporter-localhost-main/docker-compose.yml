@@ -4,6 +4,7 @@ networks:
 
 volumes:
   prometheus_data: {}
+  grafana-data: {}
 
 services:
   node-exporter:
@@ -50,3 +51,5 @@ services:
       - '3000:3000'
     networks:
       - monitoring
+    volumes:
+      - grafana-data:/var/lib/grafana
