@@ -8,8 +8,14 @@
 # -- By Yuri Voinov (c) 2014
 # --------------------------------------------------------------
 
-# Default DNS host address
-address="XXX.XXX.XXX.XXX"
+# DNS server address
+printf "Enter DNS server IP address: "
+read -r address
+
+if [ -z "$address" ]; then
+    echo "Error: DNS server IP address cannot be empty."
+    exit 1
+fi
 
 cat=`which cat`
 dig=`which dig`
