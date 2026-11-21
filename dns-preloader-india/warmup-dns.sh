@@ -16,7 +16,7 @@ dig=`which dig`
 
 # Domains collected from https://netapi.com/top-websites/in/
 # use Cyberchef to extract domains
-# Preloads top 1000 domains 
+# Preloads top 1000 domains for India
 
 if [ -z "$1" ]; then
 echo "Warming up cache by MRU domains..."
