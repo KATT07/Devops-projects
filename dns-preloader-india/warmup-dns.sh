@@ -10,7 +10,7 @@
 
 # DNS server address
 printf "Enter DNS server IP address: "
-read -r address
+read -r address < /dev/tty
 
 if [ -z "$address" ]; then
     echo "Error: DNS server IP address cannot be empty."
